@@ -5,7 +5,7 @@ from langchain_community.llms.ollama import Ollama
 
 from get_embedding_function import get_embedding_function
 
-CHROMA_PATH = "chroma"
+CHROMA_PATH = "chromalamma3"
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
@@ -40,7 +40,7 @@ def query_rag(query_text: str):
     prompt = prompt_template.format(context=context_text, question=query_text)
     # print(prompt)
 
-    model = Ollama(model="mistral")
+    model = Ollama(model="llama3")
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
