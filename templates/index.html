@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Things you want to know from Jiamu</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f7;
+            color: #333;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007aff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        .result {
+            text-align: left;
+            margin-top: 20px;
+            max-width: 600px;
+        }
+        .result h2, .result h3 {
+            margin-top: 20px;
+        }
+        .result p {
+            font-size: 1em;
+        }
+        .sources {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Things you want to know about Jiamu</h1>
+    <form action="/query" method="post">
+        <label for="prompt">Enter your question:</label>
+        <input type="text" id="prompt" name="prompt" placeholder="e.g.: Can Jiamu speak English?" onfocus="this.placeholder = ''" onblur="if (this.placeholder == '') { this.placeholder = 'eg: Can Jiamu speak English?'; }" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if prompt %}
+        <div class="result">
+            <h2>Question: {{ prompt }}</h2>
+            <h3>Answer:</h3>
+            <p>{{ answer }}</p>
+            {% if sources %}
+                <div class="sources">
+                    <h3>Sources:</h3>
+                    <p>{{ sources }}</p>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>
+
+
+
